@@ -1,0 +1,45 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+app = "python -m app"
+
+[dev-packages]
+black = "*"
+isort = "*"
+flake8 = "*"
+ipython = "*"
+aiohttp-autoreload = "*"
+sqlacodegen = "*"
+
+[packages]
+aiogram = "*"
+click = "*"
+loguru = "*"
+uvloop = "*"
+aiohttp = "*"
+envparse = "*"
+sqlalchemy = "*"
+sqlalchemy-utils = "*"
+psycopg2-binary = "*"
+asyncpg = "*"
+gino = "*"
+alembic = "*"
+aioredis = "*"
+cchardet = "*"
+aiodns = "*"
+tenacity = "*"
+apscheduler = "*"
+redis = "*"
+aiohttp-healthcheck = "*"
+requests = "*"
+mcrcon = "*"
+mcstatus = "*"
+
+[pipenv]
+allow_prereleases = true

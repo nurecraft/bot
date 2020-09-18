@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "/home/dmytrohoi/.local/share/virtualenvs/nurecraft-bot-uU-nBUvn/bin/python",
+    "python.linting.flake8Enabled": true,
+    "python.linting.pydocstyleEnabled": false,
+    "python.linting.enabled": true
+}
