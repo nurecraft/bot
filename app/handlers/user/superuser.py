@@ -1,3 +1,4 @@
+from loguru import logger
 from typing import List
 
 from aiogram import types
@@ -72,3 +73,43 @@ async def command_find(message: types.Message):
         "З таким ніком:\n"
         + "\n".join(user_lines) if user_lines else "нікого не знайдено"
     )
+
+
+@dp.message_handler(
+    commands=['unlink'],
+    is_superuser=True
+)
+async def command_unlink(message: types.Message):
+    await message.chat.do("typing")
+
+    if not message.reply_to_message:
+        await message.reply("Не треба так..")
+        return True
+
+    if message.reply_to_message.from_user.id == dp.bot.id:
+        await message.reply("Ой, не смішно!")
+        return True
+
+    if message.reply_to_message.forward_from:
+        another_user_id = message.reply_to_message.forward_from.id
+    else:
+        another_user_id = message.reply_to_message.from_user.id
+    logger.info(
+        "User {user_id} try to unlink accounts {target_id}.",
+        user_id=message.from_user.id,
+        target_id=another_user_id
+    )
+    another_user: User = await User.get(another_user_id)
+
+    if not another_user.mc_username:
+        answer = "Я таких не знаю!"
+    else:
+        await another_user.update(mc_username=None).apply()
+
+        result_text = "було відв'язано успішно" if not another_user.mc_username else "сталася помилка"
+        answer = (
+            f"Нік на сервері: <b>{another_user.mc_username}</b> {result_text}."
+        )
+
+    await message.reply(answer, parse_mode="html")
+    return True

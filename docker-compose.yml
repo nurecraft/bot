@@ -9,6 +9,8 @@ services:
     depends_on:
       - redis
       - postgres
+    networks:
+      - default
     environment:
       BOT_PUBLIC_PORT: 80
       TELEGRAM_TOKEN:
@@ -31,16 +33,20 @@ services:
     restart: on-failure
     volumes:
       - redis-data:/data
-    ports:
-      - "6379:6379"
+    networks:
+      - default
+    # ports:
+    #   - "6379:6379"
 
   postgres:
     image: postgres:alpine
     restart: on-failure
     volumes:
       - postgres-data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+    # ports:
+    #   - "5432:5432"
+    networks:
+      - default
     environment:
       POSTGRES_PASSWORD:
       POSTGRES_USER:
@@ -49,3 +55,7 @@ services:
 volumes:
   redis-data:
   postgres-data:
+
+networks:
+  default:
+    driver: overlay

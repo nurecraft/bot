@@ -19,12 +19,13 @@ async def delete_system_messages(message: types.Message):
         user_id=message.from_user.id,
         chat_id=message.chat.id
     )
-    with suppress(Unauthorized):
-        await message.delete()
-
     if message.left_chat_member:
         notification = (
             f"Нажаль {message.from_user.get_mention()} не витримав нашої компанії.."
         )
         await message.answer(notification)
+
+    with suppress(Unauthorized):
+        await message.delete()
+
     return True
