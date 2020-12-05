@@ -1,5 +1,7 @@
 # nurecraft_bot
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4d37ae9190f945d0a07e33a3547bdd0a)](https://app.codacy.com/gh/nurecraft/bot?utm_source=github.com&utm_medium=referral&utm_content=nurecraft/bot&utm_campaign=Badge_Grade)
+
 This bot based on example bot of [aiogram](https://github.com/aiogram/aiogram) framework team.
 
 ## What this bot can do?
